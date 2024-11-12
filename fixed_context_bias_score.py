@@ -165,7 +165,7 @@ def get_cooccurrences(file, data, window):
 
     male_nouns = DEFAULT_MALE_NOUNS
     female_nouns = DEFAULT_FEMALE_NOUNS
-    n_grams = ngrams(sentences.lower().split(), window)#, pad_left = True, pad_right =True)
+    n_grams = ngrams(sentences.replace('.', '').replace(',', '').lower().split(), window)#, pad_left = True, pad_right =True)
 
     for grams in n_grams:
         pos = 1
