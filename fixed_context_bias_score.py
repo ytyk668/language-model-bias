@@ -42,7 +42,7 @@ with open(filename,'r') as f:
     gender_pairs = f.readlines()
 
 for gp in gender_pairs:
-    f,m=gp.split()
+    m,f = gp.split()
     DEFAULT_FEMALE_NOUNS.append(f)
     DEFAULT_MALE_NOUNS.append(m)
 
@@ -160,12 +160,15 @@ def get_cooccurrences(file, data, window):
 
     male_nouns = DEFAULT_MALE_NOUNS
     female_nouns = DEFAULT_FEMALE_NOUNS
-    n_grams = ngrams(sentences.split(), window)#, pad_left = True, pad_right =True)
-    
+    n_grams = ngrams(sentences.lower().split(), window)#, pad_left = True, pad_right =True)
+
     for grams in n_grams:
         pos = 1
         m = 0 
         f = 0 
+        # grams: tuple of words with length window
+        # eg ('doctor:', 'dr.', 'johnson', 'was', 'known', 'for', 'her')
+        # eg ('dr.', 'johnson', 'was', 'known', 'for', 'her', 'kind')
         for w in grams:
                 
                 pos+=1
@@ -233,7 +236,9 @@ def coccurrence_counts(dataset_dir, output_dir, window=7,num_workers=1):
             
             
 init_console_logger(LOGGER)
-coccurrence_counts(**(parse_arguments()))
+args_dict = vars(args)
+args_dict.pop('gender_pair_file')
+coccurrence_counts(**args_dict)
             
     
     
