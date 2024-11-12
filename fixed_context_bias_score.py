@@ -105,7 +105,11 @@ def gender_ratios_m_f(output_data_dir,file):
     #print(sortbybias(bias_record))
     output_file = os.path.join(output_data_dir, 'biased_words_m_f')   
     #print("Bias_score: ", (tot/n))
+    with open(output_file,'w') as fp:
+        json.dump(bias_record,fp, sort_keys=True)   
+    # sorted ver
     sorted_data = sorted(list(bias_record.items()), key=lambda item: item[1]['b_score'])
+    output_file = os.path.join(output_data_dir, 'sorted_biased_words_m_f')   
     with open(output_file,'w') as fp:
         json.dump(sorted_data,fp, sort_keys=True)   
 
