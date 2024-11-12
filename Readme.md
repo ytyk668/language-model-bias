@@ -8,3 +8,4 @@ To run the model with `main.py` with bias regularization -
 To run the bias scores on a text corpus -
 + `python fixed_context_bias_score.py filepath dm -w 100 -n 1
 + `python infinite_context_bias_score.py filepath dm -w 100 -n 1
++ eg `python fixed_context_bias_score.py C:\Users\user\language-model-bias\corpus ./ --gender_pair_file penn -w 7 -n 1`
